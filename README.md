@@ -1,7 +1,8 @@
 # Qualification Viewer V1.0
 
 ## Overview
-Qualification Viewer is a browser plugin that allows you to view the personal data Stellar.ai has on you. Specifically, it reads the `props.json` file and presents relevant information in a user-friendly format.
+Qualification Viewer is a browser plugin that allows you to view your and only your personal data on [Stellar.ai](https://joinstellar.ai/home/).
+Specifically, it reads your `.json` file and presents relevant information in a user-friendly format.
 
 ## Features
 With this plugin, you can see:
