@@ -1,0 +1,21 @@
+{
+  "manifest_version": 3,
+  "name": "Qualification Viewer",
+  "description": "Displays your info on www.stellar.ai/home.",
+  "version": "1.0",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "background": {
+    "service_worker": "/js/background.js"
+  },
+  "action": {
+    "default_popup": "/template/popup.html"
+  },
+  "icons": {
+    "16": "/icon/sparkling_light_16x16.png",
+    "32": "/icon/sparkling_light_32x32.png",
+    "128": "/icon/sparkling_light_128x128.png"
+  }
+}

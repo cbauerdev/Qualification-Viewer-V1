@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qualification Viewer</title>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          padding: 10px;
+          background-color: #343a40;
+          color: #f8f9fa;
+          text-align: center;
+          position: relative;
+        }
+    
+        button {
+          padding: 12px 24px;
+          border: none;
+          color: white;
+          font-size: 14px;
+          border-radius: 8px;
+          cursor: pointer;
+          margin: 10px;
+          transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+    
+        #refreshBtn {
+          background-color: #28a745;
+        }
+    
+        #refreshBtn:hover {
+          background-color: #45a049;
+        }
+    
+        #closeBtn {
+          background-color: #dc3545;
+        }
+    
+        #closeBtnError {
+          background-color: #dc3545;
+        }
+    
+        #closeBtn:hover {
+          background-color: #e53935;
+        }
+    
+        pre {
+          text-align: left;
+          background-color: #6c757d;
+          padding: 10px;
+          border-radius: 5px;
+          margin-top: 10px;
+          font-size: 14px;
+          white-space: nowrap;
+        }
+    
+        #errorTemplate {
+          min-width: 300px;
+          padding: 10px;
+        }
+    
+        #errorTemplate a {
+          color: white;
+        }
+
+        #footer {
+          font-size: 0.75em;
+          color: gray;
+          padding-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div>
+    <div id="mainContent">
+        <div id="spinnerOverlay" style="display:none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #001c31; display: flex; justify-content: center; align-items: center; color: white; font-size: 24px;">
+            <img src="spinner.gif">
+        </div>
+
+        <h1>Qualification Viewer V.1</h1>
+        <p id="infoMessage">Loading...</p>
+        <pre id="output"></pre>
+        <button id="refreshBtn">Refresh</button>
+        <button id="closeBtn">Close</button>
+    </div>
+
+    <div id="errorTemplate">
+        <div style="text-align: center;">
+            <p style="white-space: nowrap; padding-top:20px">Please visit <a href="https://joinstellar.ai/home/" target="_blank">https://joinstellar.ai/home/</a>
+      <p><button id="closeBtnError">Close</button><p>
+    </div>
+  </div>
+<p id="footer">Qualification Viewer on github</p>
+</div>
+
+  <script src="/js/popup.js"></script>
+</body>
+
+</html>
