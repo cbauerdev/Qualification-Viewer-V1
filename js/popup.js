@@ -4,7 +4,24 @@ document.addEventListener('DOMContentLoaded', function () {
   const closeBtnError = document.getElementById('closeBtnError');
   const outputElement = document.getElementById('output');
   const infoMessage = document.getElementById('infoMessage');
-  const spinnerOverlay = document.getElementById('spinnerOverlay'); 
+  const spinnerOverlay = document.getElementById('spinnerOverlay');
+  const toggleView = document.getElementById('toggleView');
+  const showAllText = document.getElementById('showAll');
+
+  toggleView.addEventListener('change', function() {
+    if (this.checked) {
+      showAllText.textContent = "Show All";
+      showAllText.classList.add('text-active');
+      showAllText.classList.remove('text-inactive');
+    } else {
+      showAllText.textContent = "Show All";
+      showAllText.classList.add('text-inactive');
+      showAllText.classList.remove('text-active');
+    }
+  });
+  
+  // Set initial state
+  showAllText.classList.add('text-inactive');
 
   function executeScript() {
 
@@ -12,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     setTimeout(() => {
       spinnerOverlay.style.display = 'none';
-    }, 500);  
+    }, 500);
 
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       const currentTab = tabs[0];
@@ -45,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (jsonData.existingQualifications.length > 0) {
         jsonData.existingQualifications.forEach(q => {
           let title = q.title.trim();
-          title = title.replace(/"/g, '').trim(); 
+          title = title.replace(/"/g, '').trim();
           output.push(`- ${title}`);
         });
       } else {
@@ -56,7 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (jsonData.availableQualifications.length > 0) {
         jsonData.availableQualifications.forEach(q => {
           let title = q.title.trim();
-          title = title.replace(/"/g, '').trim(); 
+          title = title.replace(/"/g, '').trim();
           output.push(`- ${title}`);
         });
       } else {
@@ -67,7 +84,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (jsonData.pendingQualifications.length > 0) {
         jsonData.pendingQualifications.forEach(q => {
           let title = q.title.trim();
-          title = title.replace(/"/g, '').trim(); 
+          title = title.replace(/"/g, '').trim();
           output.push(`- ${title}`);
         });
       } else {
@@ -95,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (request.message) {
       infoMessage.textContent = 'Data was successfully fetched!';
       outputElement.innerHTML = request.message.replace(/\n/g, '<br>');
+      document.getElementById('switchContainer').style.display = 'block'; // Show switch after data loads
     }
   });
 

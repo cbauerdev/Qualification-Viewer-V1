@@ -12,42 +12,50 @@
   <div>
 
     <div id="spinnerOverlay"
-      style="display:none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #001c31; display: flex; justify-content: center; align-items: center; color: white; font-size: 24px;">
+      style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: #001c31; justify-content: center; align-items: center; color: white; font-size: 24px; z-index: 1000;">
       <img src="spinner.gif">
     </div>
 
-    <div id="mainContent">
+    <div id="mainContent" style="position: relative; z-index: 1;">
       <h1>Qualification Viewer V.1</h1>
       <p id="infoMessage">Loading...</p>
       <pre id="output"></pre>
+      
+      <!-- Main flex container -->
       <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
-        <div>
-          <label class="switch">
-            <input type="checkbox" id="toggleView">
-            <span class="slider"></span>
-          </label>
-          <span style="margin-left: 10px;">Show All</span>
+        <!-- Left side -->
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div id="switchContainer" style="display: none;">
+            <label class="switch">
+              <input type="checkbox" id="toggleView">
+              <span class="slider"></span>
+            </label></div>
+            <div class="showSpanContainer" style="display: flex; align-items: center;">
+              <span id="showAll">Show All</span>
+          </div>
         </div>
-        <div>
+        
+        <!-- Right side -->
+        <div style="display: flex; gap: 10px;">
           <button id="refreshBtn">Refresh</button>
           <button id="closeBtn">Close</button>
         </div>
       </div>
-    </div>
 
-    <div id="errorTemplate">
-      <div style="text-align: center;">
-        <p style="white-space: nowrap; padding-top:20px">Please visit <a href="https://joinstellar.ai/home/"
-            target="_blank">https://joinstellar.ai/home/</a>
-        <p><button id="closeBtnError">Close</button>
-        <p>
+      <div id="errorTemplate">
+        <div style="text-align: center;">
+          <p style="white-space: nowrap; padding-top:20px">Please visit <a href="https://joinstellar.ai/home/"
+              target="_blank">https://joinstellar.ai/home/</a>
+          <p><button id="closeBtnError">Close</button>
+          <p>
+        </div>
       </div>
-    </div>
 
-    <p id="footer"><a href="https://github.com/cbauerdev/Qualification-Viewer-V1/" target="_blank">Qualification Viewer
-        on github</a></p>
+      <p id="footer"><a href="https://github.com/cbauerdev/Qualification-Viewer-V1/" target="_blank">Qualification
+          Viewer
+          on github</a></p>
 
-    <script src="/js/popup.js"></script>
+      <script src="/js/popup.js"></script>
 </body>
 
 </html>
