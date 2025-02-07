@@ -14,8 +14,9 @@
     "default_popup": "/template/popup.html"
   },
   "icons": {
-    "16": "/icon/sparkling_light_16x16.png",
-    "32": "/icon/sparkling_light_32x32.png",
-    "128": "/icon/sparkling_light_128x128.png"
+    "16": "/icon/qviewer_16x16.png",
+    "32": "/icon/qviewer_32x32.png",
+    "48": "/icon/qviewer_48x48.png",
+    "128": "/icon/qviewer_128x128.png"
   }
 }
