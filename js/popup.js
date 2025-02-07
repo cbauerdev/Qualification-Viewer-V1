@@ -1,127 +1,39 @@
-document.addEventListener('DOMContentLoaded', function () {
-  const refreshButton = document.getElementById('refreshBtn');
-  const closeButton = document.getElementById('closeBtn');
-  const closeBtnError = document.getElementById('closeBtnError');
-  const outputElement = document.getElementById('output');
-  const infoMessage = document.getElementById('infoMessage');
-  const spinnerOverlay = document.getElementById('spinnerOverlay');
-  const toggleView = document.getElementById('toggleView');
-  const showAllText = document.getElementById('showAll');
-
-  toggleView.addEventListener('change', function() {
-    if (this.checked) {
-      showAllText.textContent = "Show All";
-      showAllText.classList.add('text-active');
-      showAllText.classList.remove('text-inactive');
-    } else {
-      showAllText.textContent = "Show All";
-      showAllText.classList.add('text-inactive');
-      showAllText.classList.remove('text-active');
+function runScript(isChecked) {
+  try {
+    // Get props element and log for debugging
+    const propsElement = document.querySelector("#props");
+    console.log("Props element:", propsElement);
+    
+    if (!propsElement) {
+      throw new Error("Props element not found");
     }
-  });
-  
-  // Set initial state
-  showAllText.classList.add('text-inactive');
 
-  function executeScript() {
+    // Parse JSON and log for debugging
+    const jsonData = JSON.parse(propsElement.textContent);
+    console.log("Parsed JSON:", jsonData);
+    
+    // Verify userProfile exists
+    if (!jsonData.userProfile) {
+      throw new Error("User profile data not found");
+    }
 
-    spinnerOverlay.style.display = 'flex';
+    const output = [];
+    const userName = `${jsonData.userProfile.firstname} ${jsonData.userProfile.lastname}`;
+    output.push(`Info for ${userName}`);
 
-    setTimeout(() => {
-      spinnerOverlay.style.display = 'none';
-    }, 500);
+    // Add country info when checked
+    if (isChecked && jsonData.userProfile.country) {
+      output.push(`\nCountry: ${jsonData.userProfile.country}`);
+      console.log("Country data:", jsonData.userProfile.country);
+    }
 
-    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-      const currentTab = tabs[0];
+    // ...existing code...
 
-      if (currentTab.url === "https://joinstellar.ai/home/") {
-
-        document.getElementById("mainContent").style.display = "block";
-        document.getElementById("errorTemplate").style.display = "none";
-
-        chrome.scripting.executeScript({
-          target: { tabId: currentTab.id },
-          func: runScript
-        });
-      } else {
-        document.getElementById("mainContent").style.display = "none";
-        document.getElementById("errorTemplate").style.display = "block";
-      }
+    chrome.runtime.sendMessage({ message: output.join("\n") });
+  } catch (error) {
+    console.error("Error in runScript:", error);
+    chrome.runtime.sendMessage({ 
+      message: `Error: Unable to fetch data. Details: ${error.message}` 
     });
   }
-
-  function runScript() {
-    try {
-      const jsonData = JSON.parse(document.querySelector("#props").textContent);
-      const output = [];
-
-      const userName = `${jsonData.userProfile.firstname} ${jsonData.userProfile.lastname}`;
-      output.push(`Info for ${userName}`);
-
-      output.push("\nPassed Qualifications:");
-      if (jsonData.existingQualifications.length > 0) {
-        jsonData.existingQualifications.forEach(q => {
-          let title = q.title.trim();
-          title = title.replace(/"/g, '').trim();
-          output.push(`- ${title}`);
-        });
-      } else {
-        output.push("- None");
-      }
-
-      output.push("\nAvailable Qualifications:");
-      if (jsonData.availableQualifications.length > 0) {
-        jsonData.availableQualifications.forEach(q => {
-          let title = q.title.trim();
-          title = title.replace(/"/g, '').trim();
-          output.push(`- ${title}`);
-        });
-      } else {
-        output.push("- None");
-      }
-
-      output.push("\nPending Qualifications:");
-      if (jsonData.pendingQualifications.length > 0) {
-        jsonData.pendingQualifications.forEach(q => {
-          let title = q.title.trim();
-          title = title.replace(/"/g, '').trim();
-          output.push(`- ${title}`);
-        });
-      } else {
-        output.push("- None");
-      }
-
-      output.push("\nProjects:");
-      if (jsonData.projects.projects.length > 0) {
-        jsonData.projects.projects.forEach(p => {
-          output.push(`- ${p.title}`);
-        });
-      } else {
-        output.push("- None");
-      }
-
-      chrome.runtime.sendMessage({ message: output.join("\n") });
-    } catch (error) {
-      chrome.runtime.sendMessage({ message: "Error: Unable to fetch data." });
-    }
-  }
-
-  refreshButton.addEventListener('click', executeScript);
-
-  chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-    if (request.message) {
-      infoMessage.textContent = 'Data was successfully fetched!';
-      outputElement.innerHTML = request.message.replace(/\n/g, '<br>');
-      document.getElementById('switchContainer').style.display = 'block'; // Show switch after data loads
-    }
-  });
-
-  executeScript();
-
-  closeButton.addEventListener('click', function () {
-    window.close();
-  });
-  closeBtnError.addEventListener('click', function () {
-    window.close();
-  });
-});
+}
