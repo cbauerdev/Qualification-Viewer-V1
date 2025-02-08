@@ -42,7 +42,7 @@ Alternatively, you can use the `Qualification Viewer V1.crx` file from the `buil
 Feel free to open issues and submit pull requests. Contributions are welcome!
 
 ## License
-[MIT License]([LICENSE](https://github.com/cbauerdev/Qualification-Viewer-V1/blob/main/LICENSE.md))
+[MIT License](https://github.com/cbauerdev/Qualification-Viewer-V1/blob/main/LICENSE.md)
 
 ---
 **Disclaimer:** This project is not affiliated with Stellar.ai.
