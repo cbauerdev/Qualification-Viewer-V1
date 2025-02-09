@@ -10,6 +10,7 @@ With this plugin, you can see:
 - Available Qualifications
 - Pending Qualifications
 - Projects you're in
+- Everything else
 
 ## Compatibility
 This plugin has been tested on:
@@ -28,6 +29,14 @@ This plugin has been tested on:
    ```sh
    git clone https://github.com/yourusername/qualification-viewer.git
    ```
+
+   OR
+
+   - Click the green `<>Code` Button
+   - Download ZIP
+   - Unzip `Qualification-Viewer-V1-main.zip`
+
+
 2. Load the plugin as an unpacked extension in your browser (Chrome/Edge/Brave):
    - Open `chrome://extensions/`
    - Enable **Developer Mode** (top right corner)
