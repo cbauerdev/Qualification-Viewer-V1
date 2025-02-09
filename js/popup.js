@@ -98,10 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
         output.push(`Source: ${jsonData.userProfile.source}`);
         output.push(`Has Messages: ${jsonData.layoutProps.user_has_messages ? "Yes" : "No"}\n`);
 
-        // ...existing code...
-
         if (isChecked) {
-          // Handle existing qualifications first
           output.push("\nEXISTING QUALIFICATIONS:\n");
           if (jsonData.existingQualifications && jsonData.existingQualifications.length > 0) {
             jsonData.existingQualifications.forEach(q => {
@@ -115,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function () {
             output.push("None\n");
           }
 
-          // Handle other qualifications only if they exist
           const otherQualifications = [
             { type: "AVAILABLE QUALIFICATIONS", key: "availableQualifications" },
             { type: "PENDING QUALIFICATIONS", key: "pendingQualifications" }

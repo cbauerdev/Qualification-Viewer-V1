@@ -121,7 +121,7 @@ input:checked + .slider:before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: gray;
   transition: .4s;
   border-radius: 34px;
 }
