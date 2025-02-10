@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
         output.push(`Has Messages: ${jsonData.layoutProps.user_has_messages ? "Yes" : "No"}\n`);
 
         if (isChecked) {
-          output.push("\nEXISTING QUALIFICATIONS:\n");
+          output.push("\PASSED QUALIFICATIONS:\n");
           if (jsonData.existingQualifications && jsonData.existingQualifications.length > 0) {
             jsonData.existingQualifications.forEach(q => {
               output.push(`Title: ${q.title.trim().replace(/"/g, '')}`);
