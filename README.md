@@ -45,7 +45,7 @@ This plugin has been tested on:
 3. (Optional) For Firefox, use `about:debugging` to load it temporarily.
 
 ### Option 2: Install from pre-built `.crx` file
-Alternatively, you can use the `Qualification Viewer V1.crx` file from the `build` folder.
+Alternatively, you can use the `Qualification Viewer.crx` file from the `build` folder. Browsers will mark this as being from an untrusted source, though.
 
 ## Contributing
 Feel free to open issues and submit pull requests. Contributions are welcome!
