@@ -12,6 +12,8 @@ With this plugin, you can see:
 - Projects you're in
 - Everything else
 
+Updates the information every 60 seconds.
+
 ## Compatibility
 This plugin has been tested on:
 - **Chromium-based browsers** (e.g., Chrome, Edge, Brave)
@@ -56,3 +58,4 @@ Feel free to open issues and submit pull requests. Contributions are welcome!
 ---
 **Disclaimer:** This project is not affiliated with Stellar.ai.
 
+w

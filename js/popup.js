@@ -208,6 +208,22 @@ document.addEventListener('DOMContentLoaded', function () {
     executeScript(isChecked);
   }
 
+  let refreshInterval;
+
+  function startAutoRefresh() {
+    executeScript(elements.toggleView.checked);
+    refreshInterval = setInterval(() => {
+      executeScript(elements.toggleView.checked);
+    }, 60000);
+  }
+
+  function stopAutoRefresh() {
+    if (refreshInterval) {
+      clearInterval(refreshInterval);
+      refreshInterval = null;
+    }
+  }
+
   elements.toggleView.addEventListener('change', handleToggleChange);
   elements.refreshButton.addEventListener('click', () => executeScript(elements.toggleView.checked));
   elements.closeButton.addEventListener('click', () => window.close());
@@ -221,4 +237,24 @@ document.addEventListener('DOMContentLoaded', function () {
 
   elements.showAllText.classList.add('text-inactive');
   executeScript(false);
-});
+
+    window.addEventListener('unload', stopAutoRefresh);
+
+    elements.toggleView.addEventListener('change', handleToggleChange);
+    elements.refreshButton.addEventListener('click', () => {
+      stopAutoRefresh();
+      executeScript(elements.toggleView.checked);
+      startAutoRefresh();
+    });
+    elements.closeButton.addEventListener('click', () => {
+      stopAutoRefresh();
+      window.close();
+    });
+    elements.closeBtnError.addEventListener('click', () => {
+      stopAutoRefresh();
+      window.close();
+    });
+  
+    elements.showAllText.classList.add('text-inactive');
+    startAutoRefresh();
+  });
